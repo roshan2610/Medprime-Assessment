@@ -1,0 +1,15 @@
+---
+- name: Deploy Dockerized Server
+  hosts: 54.175.81.10  #host IP
+  become: root
+
+  tasks:
+    - name: Clone the public repository
+      git:
+        repo: https://github.com/roshan2610/Medprime-Assessment.git  #public repository
+        dest: /opt/Medprime-Assessment
+
+    - name: Build and run Docker container
+      command: "docker-compose up -d"
+      args:
+        chdir: /opt/Medprime-Assessment
